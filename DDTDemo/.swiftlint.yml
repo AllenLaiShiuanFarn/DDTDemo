@@ -3,6 +3,8 @@ disabled_rules:
   - trailing_whitespace
   - identifier_name
   - function_parameter_count
+  - nesting
+  - redundant_string_enum_value
 excluded:
   - Carthage
   - Pods
