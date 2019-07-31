@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3A726DCD461AFDC269B2391F /* Pods_DDTDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE990AFC02E238E75B9A75E0 /* Pods_DDTDemo.framework */; };
 		B8B860273594A5B0601C2B51 /* Pods_DDTDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C765F216C1768CA932EDDF51 /* Pods_DDTDemoUITests.framework */; };
+		C95F946922F1E78F0077CBF2 /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F946822F1E78F0077CBF2 /* Plant.swift */; };
 		C97F26FA22EF612900A4BBD8 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97F26F922EF612900A4BBD8 /* UIColorExtension.swift */; };
 		C98097A222EDF84900096EE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98097A122EDF84900096EE0 /* AppDelegate.swift */; };
 		C98097A922EDF84B00096EE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C98097A822EDF84B00096EE0 /* Assets.xcassets */; };
@@ -21,7 +22,6 @@
 		C9A831F922F071670076A08F /* PlantCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A831F822F071670076A08F /* PlantCellViewModel.swift */; };
 		C9A831FB22F0A2B30076A08F /* PlantListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A831FA22F0A2B30076A08F /* PlantListViewModel.swift */; };
 		C9A831FF22F110F50076A08F /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A831FE22F110F40076A08F /* Observable.swift */; };
-		C9FF786622EDFE6D00C6AE52 /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF786522EDFE6D00C6AE52 /* Plant.swift */; };
 		C9FF786D22EE05A600C6AE52 /* LogLevelConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF786C22EE05A600C6AE52 /* LogLevelConfigurator.swift */; };
 		C9FF787122EE061700C6AE52 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF787022EE061700C6AE52 /* UIViewExtension.swift */; };
 		C9FF787322EE07A500C6AE52 /* LogTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF787222EE07A500C6AE52 /* LogTextView.swift */; };
@@ -65,7 +65,8 @@
 		B9080CF8E525B08DD1CD5A5F /* Pods-DDTDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DDTDemo.release.xcconfig"; path = "Target Support Files/Pods-DDTDemo/Pods-DDTDemo.release.xcconfig"; sourceTree = "<group>"; };
 		B93386AC6E8F013D53E27368 /* Pods-DDTDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DDTDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-DDTDemoTests/Pods-DDTDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C765F216C1768CA932EDDF51 /* Pods_DDTDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DDTDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C97F26F922EF612900A4BBD8 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = ../../../../../../../../System/Volumes/Data/Users/allenlai/Developer/DDTDemo/DDTDemo/DDTDemo/Extension/UI/UIColorExtension.swift; sourceTree = "<group>"; };
+		C95F946822F1E78F0077CBF2 /* Plant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Plant.swift; path = Plant.swift; sourceTree = "<group>"; };
+		C97F26F922EF612900A4BBD8 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		C980979E22EDF84900096EE0 /* DDTDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDTDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C98097A122EDF84900096EE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C98097A822EDF84B00096EE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,26 +79,25 @@
 		C98097C122EDF84B00096EE0 /* DDTDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDTDemoUITests.swift; sourceTree = "<group>"; };
 		C98097C322EDF84B00096EE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C98097D022EDF8B400096EE0 /* PlantListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantListViewController.swift; sourceTree = "<group>"; };
-		C9A831F422F068BF0076A08F /* UITabBarControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UITabBarControllerExtension.swift; path = ../../../../../../../../System/Volumes/Data/Users/allenlai/Developer/DDTDemo/DDTDemo/DDTDemo/Extension/UI/UITabBarControllerExtension.swift; sourceTree = "<group>"; };
-		C9A831F622F06E490076A08F /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIImageViewExtension.swift; path = ../../../../../../../../System/Volumes/Data/Users/allenlai/Developer/DDTDemo/DDTDemo/DDTDemo/Extension/UI/UIImageViewExtension.swift; sourceTree = "<group>"; };
-		C9A831F822F071670076A08F /* PlantCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlantCellViewModel.swift; path = ../../../../../../../System/Volumes/Data/Users/allenlai/Developer/DDTDemo/DDTDemo/DDTDemo/ViewModels/PlantCellViewModel.swift; sourceTree = "<group>"; };
-		C9A831FA22F0A2B30076A08F /* PlantListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlantListViewModel.swift; path = ../../../../../../../System/Volumes/Data/Users/allenlai/Developer/DDTDemo/DDTDemo/DDTDemo/ViewModels/PlantListViewModel.swift; sourceTree = "<group>"; };
+		C9A831F422F068BF0076A08F /* UITabBarControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UITabBarControllerExtension.swift; path = UITabBarControllerExtension.swift; sourceTree = "<group>"; };
+		C9A831F622F06E490076A08F /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIImageViewExtension.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		C9A831F822F071670076A08F /* PlantCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlantCellViewModel.swift; path = PlantCellViewModel.swift; sourceTree = "<group>"; };
+		C9A831FA22F0A2B30076A08F /* PlantListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlantListViewModel.swift; path = PlantListViewModel.swift; sourceTree = "<group>"; };
 		C9A831FE22F110F40076A08F /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
-		C9FF786522EDFE6D00C6AE52 /* Plant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Plant.swift; path = ../../../../../../../System/Volumes/Data/Users/allenlai/Developer/DDTDemo/DDTDemo/DDTDemo/Models/Plant.swift; sourceTree = "<group>"; };
-		C9FF786C22EE05A600C6AE52 /* LogLevelConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LogLevelConfigurator.swift; path = ../../../../../../../../System/Volumes/Data/Users/allenlai/Developer/DDTDemo/DDTDemo/DDTDemo/Utilities/Log/LogLevelConfigurator.swift; sourceTree = "<group>"; };
-		C9FF787022EE061700C6AE52 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIViewExtension.swift; path = ../../../../../../../../System/Volumes/Data/Users/allenlai/Developer/DDTDemo/DDTDemo/DDTDemo/Extension/UI/UIViewExtension.swift; sourceTree = "<group>"; };
-		C9FF787222EE07A500C6AE52 /* LogTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LogTextView.swift; path = ../../../../../../../../System/Volumes/Data/Users/allenlai/Developer/DDTDemo/DDTDemo/DDTDemo/Utilities/Log/LogTextView.swift; sourceTree = "<group>"; };
-		C9FF787522EE082100C6AE52 /* CGFloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CGFloatExtension.swift; path = ../../../../../../../../System/Volumes/Data/Users/allenlai/Developer/DDTDemo/DDTDemo/DDTDemo/Extension/Foundation/CGFloatExtension.swift; sourceTree = "<group>"; };
-		C9FF787822EE09F700C6AE52 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIClient.swift; path = ../../../../../../../../System/Volumes/Data/Users/allenlai/Developer/DDTDemo/DDTDemo/DDTDemo/Utilities/Networking/APIClient.swift; sourceTree = "<group>"; };
-		C9FF787B22EE6CA900C6AE52 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = ../../../../../../../System/Volumes/Data/Users/allenlai/Developer/DDTDemo/DDTDemo/DDTDemo/Base/BaseViewController.swift; sourceTree = "<group>"; };
-		C9FF787D22EE6CE300C6AE52 /* PrintLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PrintLog.swift; path = ../../../../../../../../System/Volumes/Data/Users/allenlai/Developer/DDTDemo/DDTDemo/DDTDemo/Utilities/Log/PrintLog.swift; sourceTree = "<group>"; };
-		C9FF787F22EE6DBF00C6AE52 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateExtension.swift; path = ../../../../../../../../System/Volumes/Data/Users/allenlai/Developer/DDTDemo/DDTDemo/DDTDemo/Extension/Foundation/DateExtension.swift; sourceTree = "<group>"; };
-		C9FF788122EE6E0000C6AE52 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateFormatterExtension.swift; path = ../../../../../../../../System/Volumes/Data/Users/allenlai/Developer/DDTDemo/DDTDemo/DDTDemo/Extension/Foundation/DateFormatterExtension.swift; sourceTree = "<group>"; };
-		C9FF788322EE6E3000C6AE52 /* NSObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NSObjectExtension.swift; path = ../../../../../../../../System/Volumes/Data/Users/allenlai/Developer/DDTDemo/DDTDemo/DDTDemo/Extension/Foundation/NSObjectExtension.swift; sourceTree = "<group>"; };
-		C9FF788522EE6E5F00C6AE52 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = ../../../../../../../../System/Volumes/Data/Users/allenlai/Developer/DDTDemo/DDTDemo/DDTDemo/Extension/Foundation/StringExtension.swift; sourceTree = "<group>"; };
-		C9FF788722EE6E8400C6AE52 /* FileManagerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FileManagerExtension.swift; path = ../../../../../../../../System/Volumes/Data/Users/allenlai/Developer/DDTDemo/DDTDemo/DDTDemo/Extension/Foundation/FileManagerExtension.swift; sourceTree = "<group>"; };
-		C9FF788922EE723F00C6AE52 /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UITableViewExtension.swift; path = ../../../../../../../../System/Volumes/Data/Users/allenlai/Developer/DDTDemo/DDTDemo/DDTDemo/Extension/UI/UITableViewExtension.swift; sourceTree = "<group>"; };
-		C9FF788B22EE738E00C6AE52 /* PlantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlantTableViewCell.swift; path = ../../../../../../../System/Volumes/Data/Users/allenlai/Developer/DDTDemo/DDTDemo/DDTDemo/Views/PlantTableViewCell.swift; sourceTree = "<group>"; };
+		C9FF786C22EE05A600C6AE52 /* LogLevelConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LogLevelConfigurator.swift; path = LogLevelConfigurator.swift; sourceTree = "<group>"; };
+		C9FF787022EE061700C6AE52 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIViewExtension.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		C9FF787222EE07A500C6AE52 /* LogTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LogTextView.swift; path = LogTextView.swift; sourceTree = "<group>"; };
+		C9FF787522EE082100C6AE52 /* CGFloatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CGFloatExtension.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
+		C9FF787822EE09F700C6AE52 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIClient.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		C9FF787B22EE6CA900C6AE52 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C9FF787D22EE6CE300C6AE52 /* PrintLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PrintLog.swift; path = PrintLog.swift; sourceTree = "<group>"; };
+		C9FF787F22EE6DBF00C6AE52 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateExtension.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		C9FF788122EE6E0000C6AE52 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateFormatterExtension.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
+		C9FF788322EE6E3000C6AE52 /* NSObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NSObjectExtension.swift; path = NSObjectExtension.swift; sourceTree = "<group>"; };
+		C9FF788522EE6E5F00C6AE52 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		C9FF788722EE6E8400C6AE52 /* FileManagerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FileManagerExtension.swift; path = FileManagerExtension.swift; sourceTree = "<group>"; };
+		C9FF788922EE723F00C6AE52 /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UITableViewExtension.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
+		C9FF788B22EE738E00C6AE52 /* PlantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlantTableViewCell.swift; path = PlantTableViewCell.swift; sourceTree = "<group>"; };
 		CE990AFC02E238E75B9A75E0 /* Pods_DDTDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DDTDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -142,6 +142,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C95F946722F1E76A0077CBF2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C95F946822F1E78F0077CBF2 /* Plant.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		C980979522EDF84900096EE0 = {
 			isa = PBXGroup;
 			children = (
@@ -168,7 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				C98097A122EDF84900096EE0 /* AppDelegate.swift */,
-				C9FF786322EDFE4A00C6AE52 /* Models */,
+				C95F946722F1E76A0077CBF2 /* Models */,
 				C9FF786222EDFE3800C6AE52 /* Views */,
 				C9FF786422EDFE5500C6AE52 /* ViewModels */,
 				C9FF787A22EE6C9200C6AE52 /* Base */,
@@ -214,14 +222,6 @@
 				C9FF788B22EE738E00C6AE52 /* PlantTableViewCell.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		C9FF786322EDFE4A00C6AE52 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				C9FF786522EDFE6D00C6AE52 /* Plant.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		C9FF786422EDFE5500C6AE52 /* ViewModels */ = {
@@ -536,11 +536,11 @@
 				C9FF788C22EE738F00C6AE52 /* PlantTableViewCell.swift in Sources */,
 				C9FF788422EE6E3000C6AE52 /* NSObjectExtension.swift in Sources */,
 				C9FF787122EE061700C6AE52 /* UIViewExtension.swift in Sources */,
+				C95F946922F1E78F0077CBF2 /* Plant.swift in Sources */,
 				C98097D122EDF8B400096EE0 /* PlantListViewController.swift in Sources */,
 				C97F26FA22EF612900A4BBD8 /* UIColorExtension.swift in Sources */,
 				C9FF788A22EE723F00C6AE52 /* UITableViewExtension.swift in Sources */,
 				C9FF788222EE6E0000C6AE52 /* DateFormatterExtension.swift in Sources */,
-				C9FF786622EDFE6D00C6AE52 /* Plant.swift in Sources */,
 				C9FF787922EE09F700C6AE52 /* APIClient.swift in Sources */,
 				C9A831F522F068BF0076A08F /* UITabBarControllerExtension.swift in Sources */,
 				C9A831F722F06E490076A08F /* UIImageViewExtension.swift in Sources */,
