@@ -274,8 +274,8 @@ extension PlantListViewController: UITableViewDelegate {
         moneyLabel.alpha = alpha1
         accountLabel.alpha = alpha2
         
-        UIView.animate(withDuration: 0.3) { [unowned self] in
-            self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            self?.view.layoutIfNeeded()
         }
     }
     
