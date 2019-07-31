@@ -46,6 +46,8 @@ class PlantTableViewCell: UITableViewCell {
         return imageView
     }()
     
+    var viewModel: PlantCellViewModel?
+    
     // MARK: - Initializer
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -57,9 +59,18 @@ class PlantTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+    
     // MARK: - Public method
-    func setupPictue(from url: URL?) {
-        pictureImageView.loadImage(from: url)
+    func setup(viewModel: PlantCellViewModel) {
+        nameLabel.text = viewModel.name
+        locationLabel.text = viewModel.location
+        featureLabel.text = viewModel.feature
+        pictureImageView.loadImage(from: viewModel.pictureURL)
+        
+        setNeedsLayout()
     }
     
     // MARK: - Private method
@@ -91,24 +102,5 @@ class PlantTableViewCell: UITableViewCell {
                             bottom: bottomAnchor,
                             trailing: trailingAnchor,
                             padding: defaultEdgeInsets)
-    }
-}
-
-extension UIImageView {
-    func loadImage(from url: URL?) {
-        image = nil
-        APIClient.shared.requestPlantImage(with: url) { [weak self] (result) in
-            guard let strongSelf = self else { return }
-            switch result {
-            case .success(let response):
-                if let imageData = response.body {
-                    DispatchQueue.main.async {
-                        strongSelf.image = UIImage(data: imageData)
-                    }
-                }
-            case .failure:
-                printLog("Error perform network request")
-            }
-        }
     }
 }

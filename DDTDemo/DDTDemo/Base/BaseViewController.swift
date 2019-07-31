@@ -25,6 +25,7 @@ class BaseViewController: UIViewController {
         
         setupAuth()
         setupBaseUI()
+        setupBinding()
         setupData()
         updateUI()
     }
@@ -74,6 +75,10 @@ class BaseViewController: UIViewController {
         
         view.backgroundColor = .white
         title = self.className
+    }
+    
+    func setupBinding() {
+        printLog("\(self.className) setupBinding")
     }
     
     func setupData() {

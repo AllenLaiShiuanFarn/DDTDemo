@@ -10,6 +10,7 @@ import UIKit
 
 class PlantListViewController: BaseViewController {
     // MARK: - Properties
+    // UI
     let activityIndicatorView: UIActivityIndicatorView = {
         let activityIndicatorView = UIActivityIndicatorView(style: .gray)
         activityIndicatorView.hidesWhenStopped = true
@@ -92,14 +93,15 @@ class PlantListViewController: BaseViewController {
     let headerViewMinHeight: CGFloat = 66 + UIApplication.shared.statusBarFrame.height
     
     var navigationViewHeightConstraint: NSLayoutConstraint!
-    var defaultOffset: CGPoint?
     
-    var alpha1: CGFloat = 1.0
-    var alpha2: CGFloat = 0.0
-    
-    var plantData: PlantData?
+    var alpha1: CGFloat = 1.0   // bankLabel, accountSegmentedControl, moneyLabel
+    var alpha2: CGFloat = 0.0   // accountLabel
     
     let cellMinHeight: CGFloat = 88.0 + .defaultMargin + .defaultMargin
+    
+    // ViewModel
+    var plantListViewModel = PlantListViewModel()
+    var plantsOffset = 0
 
     // MARK: - ViewController lifecycle
     override func viewDidLoad() {
@@ -110,8 +112,6 @@ class PlantListViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        defaultOffset = tableView.contentOffset
         
         maskView1.addGradientLayer(with: navigationView.bounds, colors: [UIColor.init(hex: "#179845"), UIColor.init(hex: "#CBF8CA")])
         maskView2.addGradientLayer(with: navigationView.bounds, colors: [UIColor.init(hex: "#179845"), UIColor.init(hex: "#85CE7A")])
@@ -160,28 +160,38 @@ class PlantListViewController: BaseViewController {
         tableView.anchor(top: navigationView.bottomAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
     }
     
+    override func setupBinding() {
+        super.setupBinding()
+        
+        plantListViewModel.plantCellViewModels.addObserver(willPerfromImmediately: false) { [weak self] (_) in
+            guard let strongSelf = self else { return }
+            strongSelf.tableView.isHidden = false
+            
+            if strongSelf.plantsOffset == 0 {
+                strongSelf.tableView.reloadData()
+                strongSelf.plantsOffset = strongSelf.plantListViewModel.plantCellViewModels.value.count
+            } else {
+                let count = strongSelf.plantListViewModel.plantCellViewModels.value.count
+                let range = strongSelf.plantsOffset..<count
+                let indexPaths = range.map { IndexPath(row: $0, section: 0) }
+                strongSelf.tableView.insertRows(at: indexPaths, with: .fade)
+                strongSelf.plantsOffset = count
+            }
+        }
+        
+        plantListViewModel.isLoading.addObserver { [weak self] (isLoading) in
+            if isLoading {
+                self?.activityIndicatorView.startAnimating()
+            } else {
+                self?.activityIndicatorView.stopAnimating()
+            }
+        }
+    }
+    
     override func setupData() {
         super.setupData()
        
-        APIClient.shared.requstPlantData(withLimit: 20, offset: 0) { [weak self] (result) in
-            guard let strongSelf = self else { return }
-            
-            switch result {
-            case .success(let response):
-                if let response = try? response.decode(to: PlantData.self) {
-                    strongSelf.plantData = response.body
-                    DispatchQueue.main.async {
-                        strongSelf.activityIndicatorView.stopAnimating()
-                        strongSelf.tableView.isHidden = false
-                        strongSelf.tableView.reloadData()
-                    }
-                } else {
-                    printLog("Failed to decode response")
-                }
-            case .failure:
-                printLog("Error perform network request")
-            }
-        }
+        plantListViewModel.start()
     }
     
     // MARK: - Private method
@@ -211,69 +221,34 @@ class PlantListViewController: BaseViewController {
             .boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
         return estimatedFrame.height + .defaultMargin
     }
-    
-    private func loadMoreData() {
-        guard let plantData = plantData else { return }
-        let offset = plantData.plants.count
-        activityIndicatorView.startAnimating()
-        APIClient.shared.requstPlantData(withLimit: 20, offset: offset) { [weak self] (result) in
-            guard let strongSelf = self else { return }
-            
-            switch result {
-            case .success(let response):
-                if let response = try? response.decode(to: PlantData.self) {
-                    let newPlantsData = response.body
-                    strongSelf.plantData?.offset = newPlantsData.offset
-                    strongSelf.plantData?.plants.append(contentsOf: newPlantsData.plants)
-                    guard let end = strongSelf.plantData?.plants.count else { return }
-                    let range = newPlantsData.offset..<end
-                    let indexPaths = range.map { IndexPath(row: $0, section: 0) }
-                    
-                    DispatchQueue.main.async {
-                        strongSelf.activityIndicatorView.stopAnimating()
-                        strongSelf.tableView.insertRows(at: indexPaths, with: .fade)
-                    }
-                } else {
-                    printLog("Failed to decode response")
-                }
-            case .failure:
-                printLog("Error perform network request")
-            }
-        }
-    }
 }
 
 // MARK: - UITableViewDataSource
 extension PlantListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return plantData?.plants.count ?? 0
+        return plantListViewModel.plantCellViewModels.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let plants = plantData?.plants,
-            let cell = tableView.dequeueReusableCell(withIdentifier: PlantTableViewCell.className, for: indexPath) as? PlantTableViewCell else { return UITableViewCell() }
-        let plant = plants[indexPath.row]
-        cell.nameLabel.text = plant.chineseName
-        cell.locationLabel.text = plant.location
-        cell.featureLabel.text = plant.feature
-        cell.setupPictue(from: plant.pictureURL)
-        cell.pictureImageView.loadImage(from: plant.pictureURL)
-        if indexPath.row == plants.count - 5 {
-            loadMoreData()
+        let plantCellViewModel = plantListViewModel.plantCellViewModels.value[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PlantTableViewCell.className, for: indexPath) as? PlantTableViewCell else { return UITableViewCell() }
+        cell.setup(viewModel: plantCellViewModel)
+        cell.layoutIfNeeded()
+        
+        if indexPath.row == plantListViewModel.plantCellViewModels.value.count - 5 {
+            plantListViewModel.loadMorePlants()
         }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if let plant = self.plantData?.plants[indexPath.row] {
-            let nameHeight = estimatedHeight(with: plant.chineseName)
-            let locationHeight = estimatedHeight(with: plant.location)
-            let featureHeight = estimatedHeight(with: plant.feature)
-            let estimatedHeight = .defaultMargin + nameHeight + locationHeight + featureHeight
-            return (estimatedHeight > cellMinHeight) ? estimatedHeight : cellMinHeight
-        }
-        return 0
+        let platsCellViewModel = plantListViewModel.plantCellViewModels.value[indexPath.row]
+        let nameHeight = estimatedHeight(with: platsCellViewModel.name)
+        let locationHeight = estimatedHeight(with: platsCellViewModel.location)
+        let featureHeight = estimatedHeight(with: platsCellViewModel.feature)
+        let estimatedHeight = .defaultMargin + nameHeight + locationHeight + featureHeight
+        return (estimatedHeight > cellMinHeight) ? estimatedHeight : cellMinHeight
     }
 }
 
@@ -324,7 +299,5 @@ extension PlantListViewController: UITableViewDelegate {
         accountSegmentedControl.alpha = alpha1
         moneyLabel.alpha = alpha1
         accountLabel.alpha = alpha2
-        
-        print("alpha1: \(alpha1), alpha2: \(alpha2)")
     }
 }
