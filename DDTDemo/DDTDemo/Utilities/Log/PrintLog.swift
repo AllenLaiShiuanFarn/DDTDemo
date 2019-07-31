@@ -14,7 +14,6 @@ func printLog(_ items: Any,
               function: String = #function,
               line: Int = #line) {
     #if DEBUG
-    
     if LogLevelConfigurator.shared.logLevels.contains(level) {
         let currentDateString = Date.currentDateString()
         let fileName = file.components(separatedBy: "/").last?.components(separatedBy: ".").first ?? ""
@@ -41,6 +40,5 @@ func printLog(_ items: Any,
             }
         }
     }
-    
     #endif
 }

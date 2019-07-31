@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         setupWindow()
         setupConfigure()
+        setupLogTextView()
         
         return true
     }
@@ -32,7 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         guard let window = window else { fatalError() }
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [PlantListViewController()]
+        tabBarController.setupViewControllers([ViewControllerInfo(hasNavigation: false,
+                                                                  viewController: PlantListViewController(),
+                                                                  tabBarItem: UITabBarItem(tabBarSystemItem: .favorites, tag: 0))])
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
     }
