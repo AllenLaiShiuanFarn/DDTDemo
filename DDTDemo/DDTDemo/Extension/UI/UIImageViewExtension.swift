@@ -22,6 +22,7 @@ extension UIImageView {
             }
         }
         
+        // if no image from cache, get image from url
         APIClient.shared.requestPlantImage(with: url) { [weak self] (result) in
             switch result {
             case .success(let response):

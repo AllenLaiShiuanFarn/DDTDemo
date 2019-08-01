@@ -86,6 +86,7 @@ class PlantListViewController: BaseViewController {
         tableView.register(cellClasses: PlantTableViewCell.self)
         tableView.estimatedRowHeight = 0
         tableView.isHidden = true
+        tableView.allowsSelection = false
         return tableView
     }()
     
@@ -241,7 +242,10 @@ extension PlantListViewController: UITableViewDataSource {
         
         return cell
     }
-    
+}
+
+// MARK: - UITableViewDelegate
+extension PlantListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let platsCellViewModel = plantListViewModel.plantCellViewModels.value[indexPath.row]
         let nameHeight = estimatedHeight(with: platsCellViewModel.name)
@@ -250,10 +254,7 @@ extension PlantListViewController: UITableViewDataSource {
         let estimatedHeight = .defaultMargin + nameHeight + locationHeight + featureHeight
         return (estimatedHeight > cellMinHeight) ? estimatedHeight : cellMinHeight
     }
-}
-
-// MARK: - UITableViewDelegate
-extension PlantListViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
